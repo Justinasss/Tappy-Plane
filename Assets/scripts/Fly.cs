@@ -9,6 +9,10 @@ public class Fly : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    public AudioClip successSound;
+
+    private AudioSource audioSource;
+
     
 
     private Rigidbody2D rb;
@@ -18,6 +22,7 @@ public class Fly : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        //audioSource = GetCoponent
 
         
     }
@@ -44,8 +49,15 @@ public class Fly : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    void OnTeriggerExit2D(collider2D col)
     {
-        scoreText.text = (++score).ToString();
+        scoreTextxtet = (++score).ToString("D4");
+        audioSource.PlayOnShot(successsSound);
+    }
+
+    void OnCillisionEnter2D(Colllision2D col)
+    {
+        scoreManager.ShowScoreBoard(score);
+        gameObject.SetActive(false);
     }
 }
